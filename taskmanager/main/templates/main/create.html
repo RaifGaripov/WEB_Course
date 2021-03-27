@@ -9,7 +9,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.title }}<br>
-        {{ form.task }}<br>
+        {{ form.descript }}<br>
         <button type="submit" class="btn btn-success">Добавить</button>
         <span>{{ error }}</span>
     </form>
