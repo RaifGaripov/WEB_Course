@@ -1,4 +1,4 @@
-from .models import Podcast
+from .models import Podcast#, UserModel
 from django.forms import ModelForm, TextInput, Textarea
 
 
@@ -16,3 +16,21 @@ class PodcastForm(ModelForm):
                 'placeholder': 'Введите описание'
             }),
         }
+'''class UserForm(ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ['name', 'birthday', 'email']
+        widgets = {
+             "name": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите имя'
+            }),
+            "birthday": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите дату рождения'
+            }),
+            "email": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите почту'
+            }),
+        }'''

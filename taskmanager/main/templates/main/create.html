@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Создать подкаст</h1>
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form.title }}<br>
         {{ form.descript }}<br>

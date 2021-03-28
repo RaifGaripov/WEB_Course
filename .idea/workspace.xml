@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c571830a-5819-484a-b1e3-38df639be6d6" name="Default Changelist" comment="Created site for podcasts&#10;Added main, side, and create urls" />
+    <list default="true" id="c571830a-5819-484a-b1e3-38df639be6d6" name="Default Changelist" comment="Created site for podcasts&#10;Added main, side, and create urls">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/taskmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/taskmanager/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +48,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -51,7 +66,8 @@
       <option name="presentableId" value="Default" />
       <updated>1616860029091</updated>
       <workItem from="1616860032221" duration="14945000" />
-      <workItem from="1616877064772" duration="3515000" />
+      <workItem from="1616877064772" duration="4122000" />
+      <workItem from="1616915005650" duration="7452000" />
     </task>
     <task id="LOCAL-00001" summary="Created site for podcasts&#10;Added main, side, and create urls">
       <created>1616876563114</created>
@@ -97,7 +113,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Created site for podcasts&#10;Added main, side, and create urls" />
     <option name="LAST_COMMIT_MESSAGE" value="Created site for podcasts&#10;Added main, side, and create urls" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/taskmanager/main/forms.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
