@@ -12,11 +12,22 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal">Курсовая работа WEB</h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="{% url 'home' %}">Главная</a>
+
+          {% if user.is_authenticated %}
+              {% if user.is_superuser %}
+                  <a class="p-2 text-dark" href="{% url 'create' %}">Создать подкаст</a>
+
+              {% endif %}
+              <a class="p-2 text-dark" href="{% url 'logout' %}">Выйти</a>
+
+          {% else %}
+              <a class="p-2 text-dark" href="{% url 'register' %}">Зарегистрироваться</a>
+              <a class="p-2 text-dark" href="{% url 'login' %}">Войти</a>
+
+          {% endif %}
+         <a class="p-2 text-dark" href="{% url 'home' %}">Главная</a>
          <a class="p-2 text-dark" href="{% url 'about' %}">Про нас</a>
-          <a class="p-2 text-dark" href="{% url 'create' %}">Создать подкаст</a>
-           <a class="p-2 text-dark" href="{% url 'register' %}">Зарегистрироваться</a>
-            <a class="p-2 text-dark" href="{% url 'login' %}">Войти</a>
+
 
       </nav>
     </div>

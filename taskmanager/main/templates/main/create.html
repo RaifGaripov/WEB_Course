@@ -10,6 +10,10 @@
         {% csrf_token %}
         {{ form.title }}<br>
         {{ form.descript }}<br>
+        {{ form.category }}<br>
+        {{ form.file}}<br>
+        {{ form.duration}}<br>
+        {{ form.image}}<br>
         <button type="submit" class="btn btn-success">Добавить</button>
         <span>{{ error }}</span>
     </form>

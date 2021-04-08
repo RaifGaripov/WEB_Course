@@ -1,6 +1,15 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 from .models import Podcast
 from .forms import PodcastForm
+
+class home_view(ListView):
+    model = Podcast
+    template_name = 'main/view.html'
+
+class detail_view(DetailView):
+    model = Podcast
+    template_name = 'main/details.html'
 
 def index(request):
     podcasts = Podcast.objects.all()

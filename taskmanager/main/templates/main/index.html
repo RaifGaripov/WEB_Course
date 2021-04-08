@@ -7,10 +7,11 @@
 {% block content %}
     <h1>Главная страница</h1>
     {% if podcasts %}
-        {% for el in podcasts %}
+        {% for podcast in podcasts %}
             <div class="alert alert-warning mt-2">
-                <h3>{{ el.title }}</h3>
-                <p>{{ el.descript }}</p>
+                <h3><a href="{% url 'details' podcast.pk %} ">{{ podcast.title }} - {{ podcast.author }}</a></h3>
+                <p>{{ podcast.descript }}</p>
+                <p>{{ podcast.post_date }}</p>
             </div>
         {% endfor %}
     {% else %}

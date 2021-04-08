@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'main/base.html' %}
+
+{% block title %}
+Информация о подкасте
+{% endblock %}
+
+{% block content %}
+
+    <h2>Подкасты</h2>
+    <ul>
+        {% for podcast in object_list %}
+            <li>{{ podcast.title }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

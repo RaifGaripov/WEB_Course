@@ -1,17 +1,28 @@
-from .models import Podcast#, UserModel
-from django.forms import ModelForm, TextInput, Textarea
+from .models import Podcast, Category#, UserModel
+from django import forms
 
 
-class PodcastForm(ModelForm):
+class PodcastForm(forms.ModelForm):
     class Meta:
         model = Podcast
-        fields = ["title", "descript"]
+        fields = ["title", "descript", "author", "category",
+                  "file", "duration", "image"]
+        category = forms.ModelChoiceField(queryset=Category.objects.all(),
+                                          to_field_name='Выберите категорию'),
+        file = forms.FileField(required=False)
+        image = forms.FileField(required=False)
+        duration = forms.FloatField()
+
         widgets = {
-            "title": TextInput(attrs={
+            "title": forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите название'
             }),
-            "descript": Textarea(attrs={
+            "author": forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите автора'
+            }),
+            "descript": forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите описание'
             }),
