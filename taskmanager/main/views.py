@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Podcast
 from .forms import PodcastForm
 
@@ -10,6 +11,15 @@ class home_view(ListView):
 class detail_view(DetailView):
     model = Podcast
     template_name = 'main/details.html'
+class update_view(UpdateView):
+    model = Podcast
+    template_name = 'main/update.html'
+    fields = ["title", "descript", "author", "category",
+              "file", "duration", "image"]
+class delete_view(DeleteView):
+    model = Podcast
+    template_name = 'main/delete.html'
+    success_url = reverse_lazy('home')
 
 def index(request):
     podcasts = Podcast.objects.all()
@@ -32,7 +42,7 @@ def create(request):
             form.save()
             return redirect('home')
         else:
-            error = "Форма была неверной"
+            error = form.errors
     context = {
         "form": form,
         "error": error

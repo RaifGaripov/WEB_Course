@@ -7,26 +7,28 @@ class PodcastForm(forms.ModelForm):
         model = Podcast
         fields = ["title", "descript", "author", "category",
                   "file", "duration", "image"]
-        category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                          to_field_name='Выберите категорию'),
-        file = forms.FileField(required=False)
-        image = forms.FileField(required=False)
-        duration = forms.FloatField()
 
         widgets = {
             "title": forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите название'
             }),
+           "descript": forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите описание'
+            }),
             "author": forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Введите автора'
             }),
-            "descript": forms.Textarea(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите описание'
-            }),
         }
+        category = forms.ModelChoiceField(
+            queryset=Category.objects.all(),
+            to_field_name='Выберите категорию', help_text="Выберите категорию")
+        file = forms.FileField(required=False)
+        duration = forms.FloatField()
+        image = forms.FileField(required=False)
+
 '''class UserForm(ModelForm):
     class Meta:
         model = UserModel

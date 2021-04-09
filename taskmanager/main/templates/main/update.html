@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
 
-</body>
-</html>
+{% block title %}
+Изменить подкаст
+{% endblock %}
+
+{% block content %}
+    <h1>Изменить подкаст</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.author }}<br>
+        {{ form.descript }}<br>
+        {{ form.category }}<br>
+        {{ form.file}}<br>
+        {{ form.duration}}<br>
+        {{ form.image}}<br>
+        <button type="submit" class="btn btn-success">Изменить</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}

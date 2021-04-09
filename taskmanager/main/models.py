@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
-
+from django.urls import reverse
 class Category(models.Model):
     name = models.CharField('Название', max_length=50)
 
@@ -12,6 +12,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 
 class Podcast(models.Model):
@@ -27,8 +29,13 @@ class Podcast(models.Model):
     image = models.ImageField(upload_to='podcasts', blank=True)
     listened = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
+
     def __str__(self):
         return self.title + ' + ' + self.author
+
+    def get_absolute_url(self):
+        return reverse('home')
+
     class Meta:
         verbose_name = 'Подкаст'
         verbose_name_plural = 'Подкасты'

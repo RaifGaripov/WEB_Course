@@ -9,4 +9,6 @@ urlpatterns = [
     path('create', views.create, name='create'),
     path('view', views.home_view.as_view(), name='view'),
     path('details/<int:pk>', views.detail_view.as_view(), name='details'),
+    path('details/update/<int:pk>', views.update_view.as_view(), name='update'),
+    path('details/<int:pk>/delete', views.delete_view.as_view(), name='delete'),
 ]
