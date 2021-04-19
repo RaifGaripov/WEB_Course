@@ -5,25 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c571830a-5819-484a-b1e3-38df639be6d6" name="Default Changelist" comment="Created site for podcasts&#10;Added main, side, and create urls">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/7dc313e8-6732-476e-849a-2f8687bfee9d.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/taskmanager/main/migrations/0002_auto_20210409_1117.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/delete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/view.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/taskmanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/taskmanager/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +136,8 @@
       <workItem from="1617821896450" duration="2348000" />
       <workItem from="1617868766480" duration="5183000" />
       <workItem from="1617879035747" duration="5626000" />
+      <workItem from="1617910841423" duration="2178000" />
+      <workItem from="1617953467342" duration="4407000" />
     </task>
     <task id="LOCAL-00001" summary="Created site for podcasts&#10;Added main, side, and create urls">
       <created>1616876563114</created>

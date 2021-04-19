@@ -12,8 +12,10 @@
                 <h3><a href="{% url 'details' podcast.pk %} ">{{ podcast.title }} - {{ podcast.author }}</a></h3>
                 <p>{{ podcast.descript }}</p>
                 <p>{{ podcast.post_date }}</p>
-                <a href="{% url 'update' podcast.pk %}">Изменить</a><br/>
-                <a href="{% url 'delete' podcast.pk %}">Удалить</a><br/>
+                {% if user.is_superuser %}
+                    <a href="{% url 'update' podcast.pk %}">Изменить</a><br/>
+                    <a href="{% url 'delete' podcast.pk %}">Удалить</a><br/>
+                {% endif %}
             </div>
         {% endfor %}
     {% else %}

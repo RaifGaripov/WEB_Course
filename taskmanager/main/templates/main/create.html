@@ -5,11 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Создать подкаст</h1>
-    <form action="create" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-success">Добавить</button>
-        <span>{{ error }}</span>
-    </form>
+
+    {% if user.is_superuser %}
+        <h1>Создать подкаст</h1>
+        <form action="create" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-success">Добавить</button>
+            <span>{{ error }}</span>
+        </form>
+    {% else %}
+    Создавать может только админ!!!
+    {% endif %}
 {% endblock %}

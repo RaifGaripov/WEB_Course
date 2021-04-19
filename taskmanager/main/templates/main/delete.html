@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Удалить подкаст {{ podcast.title }}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-success">Удалить</button>
-        <span>{{ error }}</span>
-    </form>
+    {% if user.is_superuser %}
+        <h1>Удалить подкаст {{ podcast.title }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Удалить</button>
+            <span>{{ error }}</span>
+        </form>
+    {% else %}
+        Удалять может только админ!!!
+    {% endif %}
 {% endblock %}

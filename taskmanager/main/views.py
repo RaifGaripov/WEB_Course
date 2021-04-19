@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import Podcast
 from .forms import PodcastForm
+
+def like_view(request, pk):
+    podcast = get_object_or_404(Podcast, id=request.POST.get('podcast_id'))
+    podcast.likes.add(request.user)
+    return redirect(reverse('details', args=[str(pk)]))
 
 class home_view(ListView):
     model = Podcast

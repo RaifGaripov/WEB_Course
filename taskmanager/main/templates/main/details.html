@@ -11,4 +11,14 @@
     <hr>
     <br/> {{podcast.descript}}
 
+    <br/><br/>
+    <form action="{% url 'like' podcast.pk %}"
+          method ="POST">
+        {% csrf_token %}
+        <button type="submit", name="podcast_id",
+                value="{{ podcast.id }}", class="btn btn-primary btn-sm">Like</button>
+        - Likes: {{podcast.likes.count}} <br>
+        - Listened: {{podcast.listened.count}}
+
+    </form>
 {% endblock %}

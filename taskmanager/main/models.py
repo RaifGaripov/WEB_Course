@@ -27,8 +27,8 @@ class Podcast(models.Model):
     file = models.FileField(blank=True)
     duration = models.FloatField(default=0)
     image = models.ImageField(upload_to='podcasts', blank=True)
-    listened = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
+    listened = models.ManyToManyField(User, related_name='podcast_listened')
+    likes = models.ManyToManyField(User, related_name='podcast_likes')
 
     def __str__(self):
         return self.title + ' + ' + self.author
