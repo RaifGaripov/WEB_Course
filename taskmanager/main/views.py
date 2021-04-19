@@ -3,11 +3,8 @@ from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from .models import Podcast
 from .forms import PodcastForm
-
-def like_view(request, pk):
-    podcast = get_object_or_404(Podcast, id=request.POST.get('podcast_id'))
-    podcast.likes.add(request.user)
-    return redirect(reverse('details', args=[str(pk)]))
+from django.http import JsonResponse, HttpResponse
+import json
 
 class home_view(ListView):
     model = Podcast
@@ -16,6 +13,13 @@ class home_view(ListView):
 class detail_view(DetailView):
     model = Podcast
     template_name = 'main/details.html'
+    def POST(self, request, pk):
+        if request.is_ajax and request.method == "POST":
+            podcast = get_object_or_404(Podcast, id=request.POST.get('podcast_id'))
+            podcast.listened.add(request.user)
+            return HttpResponse({"counting": podcast.listened}, status=200)
+
+
 class update_view(UpdateView):
     model = Podcast
     template_name = 'main/update.html'
@@ -36,13 +40,27 @@ def index(request):
 def about(request):
     return render(request, 'main/about.html')
 
+def like_view(request, pk):
+    podcast = get_object_or_404(Podcast, id=request.POST.get('podcast_id'))
+    podcast.likes.add(request.user)
+    return redirect(reverse('details', args=[str(pk)]))
+
+def listen_view(request, pk):
+    if request.is_ajax and request.method == "POST":
+        podcast = get_object_or_404(Podcast, id=request.POST.get('podcast_id'))
+        podcast.listened.add(request.user)
+        print('.!.')
+        return HttpResponse({"counting": podcast.listened}, status=200)
+
+    return redirect('home')
+
 
 def create(request):
     #save podcast
     error = ""
     form = PodcastForm()
     if request.method == "POST":
-        form = PodcastForm(request.POST)
+        form = PodcastForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')

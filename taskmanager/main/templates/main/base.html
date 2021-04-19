@@ -1,39 +1,139 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="not-ie" lang="ru"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<!-- Basic Meta Tags -->
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="Подкасты">
+	<meta name="keywords" content="Подкасты">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--[if (gte IE 9)|!(IE)]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon" type="image/png">
+
+  <!-- Bootstrap -->
+
+  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+  <!-- Styles -->
+
+  <link href="{% static 'css/styles.css'%} " rel="stylesheet" id="color-style">
+
+  <!-- Magnific Popup -->
+  <link href="{% static 'css/magnific-popup.css'%}" rel="stylesheet">
+
+  <!-- Animate -->
+  <link href="{% static 'css/animate.css'%}" rel="stylesheet">
+
+  <!-- Font Awesome Style -->
+  <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet">
+
+  <!-- Typicons Style -->
+  <link href="{% static 'css/typicons.min.css'%}" rel="stylesheet">
+
+	<!-- Flex Slider -->
+	<link href="{% static 'css/flexslider.css'%}" media="screen" rel="stylesheet">
+
+  <!-- Web Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+	<!-- Internet Explorer condition - HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="{% static 'js/modernizr.js'%}"></script>
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Курсовая работа WEB</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
 
-          {% if user.is_authenticated %}
+  <!-- Header -->
+  <header>
+
+    <!-- Logo Bar -->
+    <div class="logo-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <!-- Logo -->
+        		<a href="index.html" class="logo" title="Главная"><img src="{% static 'img/logo.png'%}" alt=""></a>
+          </div>
+          <div class="col-md-3 col-md-offset-5 col-sm-4 col-sm-offset-0">
+
+            <!-- Search Input -->
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Поиск здесь">
+              <span class="input-group-btn">
+                <button class="btn" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logo Bar End -->
+
+    <!-- Nav -->
+    <nav class="navbar" role="navigation">
+      <div class="navbar-inner">
+        <div class="container">
+
+          <!-- Menu -->
+          <ul class="nav navbar-nav" id="nav">
+            <li class="selected"><a href="{% url 'home' %}" title="">Главная</a>
+              <!-- Submenu -->
+              <ul>
+                <li><a href="#" title="">Submenu 01</a></li>
+                <li><a href="#" title="">Submenu 02</a></li>
+                <li><a href="#" title="">Submenu 03</a></li>
+                <li class="selected"><a href="#" title="">Submenu 04 Selected</a></li>
+              </ul>
+              <!-- Submenu End -->
+            </li>
+            <li><a href="categories.html" title="">Категории</a></li>
+            <li><a href="photo.html" title="">Фотогалерея</a></li>
+            <li><a href="components.html" title="">Components</a></li>
+            <li><a href="contact.html" title="">О нас</a></li>
+              {% if user.is_authenticated %}
               {% if user.is_superuser %}
-                  <a class="p-2 text-dark" href="{% url 'create' %}">Создать подкаст</a>
+               <li><a href="{% url 'create' %}" title="">Создать подкаст</a></li>
+<!--                  <a class="p-2 text-dark" href="{% url 'create' %}">Создать подкаст</a>-->
 
               {% endif %}
-              <a class="p-2 text-dark" href="{% url 'logout' %}">Выйти</a>
+              <li><a href="{% url 'logout' %}" title="">Выйти</a></li>
+
 
           {% else %}
-              <a class="p-2 text-dark" href="{% url 'register' %}">Зарегистрироваться</a>
-              <a class="p-2 text-dark" href="{% url 'login' %}">Войти</a>
+               <li><a href="{% url 'register' %}" title="">Зарегистрироваться</a></li>
+               <li><a href="{% url 'login' %}" title="">Войти</a></li>
 
           {% endif %}
-         <a class="p-2 text-dark" href="{% url 'home' %}">Главная</a>
-         <a class="p-2 text-dark" href="{% url 'about' %}">Про нас</a>
-
-
-      </nav>
-    </div>
+          <li><a href="{% url 'about' %}" title="">О нас</a></li>
+          </ul>
+          <!-- Menu End -->
+        </div>
+      </div>
+    </nav>
+    <!-- Nav End -->
+  </header>
 
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% block javascript %}{% endblock %}
 </body>
+
 </html>

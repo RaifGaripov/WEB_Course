@@ -1,4 +1,4 @@
-from .models import Podcast, Category#, UserModel
+from .models import Podcast, Category
 from django import forms
 
 
@@ -25,25 +25,8 @@ class PodcastForm(forms.ModelForm):
         category = forms.ModelChoiceField(
             queryset=Category.objects.all(),
             to_field_name='Выберите категорию', help_text="Выберите категорию")
-        file = forms.FileField(required=False)
-        duration = forms.FloatField()
-        image = forms.FileField(required=False)
 
-'''class UserForm(ModelForm):
-    class Meta:
-        model = UserModel
-        fields = ['name', 'birthday', 'email']
-        widgets = {
-             "name": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите имя'
-            }),
-            "birthday": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите дату рождения'
-            }),
-            "email": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите почту'
-            }),
-        }'''
+        duration = forms.FloatField()
+        file = forms.FileField(required=False)
+        image = forms.ImageField(required=False)
+

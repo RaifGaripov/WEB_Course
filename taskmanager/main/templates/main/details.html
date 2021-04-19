@@ -1,24 +1,83 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block title %}
 Информация о подкасте
 {% endblock %}
 
+{% block javascript %}
+<script>
+     document.getElementById("listen_btn").style.display = "none";
+            var aud = document.getElementById("audio");
+            aud.onplay = function() {
+                document.getElementById("listen_btn").click();}
+
+        </script>
+
+{% endblock %}
+
 {% block content %}
 
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <h1>{{podcast.title}}</h1>
     <small>Автор: {{podcast.author}}</small><br/>
     <hr>
     <br/> {{podcast.descript}}
 
+    <br/> {{podcast.category}}
+    <br/> {{podcast.post_date}}
+    <br/> {{podcast.duration}}
     <br/><br/>
+    {% if podcast.image %}
+        <br/> <img src="{{podcast.image.url}} ">
+    {% endif %}
+
+
+<script>
+            var csrf = $("input[name=csrfmiddlewaretoken]").val();
+            $("#myForm").submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),
+                    success:function(){
+                        alert("hui");
+                        $("#counting").add("govno");
+                    }
+                });
+               });
+    </script>
+     {% if podcast.file %}
+        <audio controls id="audio">
+            <source src =" {{podcast.file.url}}" type="audio/mpeg">
+        </audio>
+
+
+    <form id="myForm" action="{% url 'listen' podcast.pk %}"
+              method ="POST">
+            {% csrf_token %}
+        <button type="submit", name="podcast_id",
+                id="listen_btn",
+                value="{{ podcast.id }}", class="btn btn-primary btn-sm">Listen</button>
+    </form>
+
+
+
+
+    {% endif %}
+
+
+
+    <br/><br/>
+
     <form action="{% url 'like' podcast.pk %}"
           method ="POST">
         {% csrf_token %}
         <button type="submit", name="podcast_id",
                 value="{{ podcast.id }}", class="btn btn-primary btn-sm">Like</button>
+        <ul id="counting">
         - Likes: {{podcast.likes.count}} <br>
         - Listened: {{podcast.listened.count}}
-
+        </ul>
     </form>
 {% endblock %}

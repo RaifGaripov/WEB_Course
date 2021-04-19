@@ -24,11 +24,11 @@ class Podcast(models.Model):
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
 
     post_date = models.DateField(null=True, auto_now_add=True)
-    file = models.FileField(blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='media/audio/')
     duration = models.FloatField(default=0)
-    image = models.ImageField(upload_to='podcasts', blank=True)
-    listened = models.ManyToManyField(User, related_name='podcast_listened')
-    likes = models.ManyToManyField(User, related_name='podcast_likes')
+    image = models.ImageField(null=True, blank=True, upload_to='media/img/')
+    listened = models.ManyToManyField(User, related_name='podcast_listened', default=None, blank=True)
+    likes = models.ManyToManyField(User, related_name='podcast_likes', default=None, blank=True)
 
     def __str__(self):
         return self.title + ' + ' + self.author
@@ -40,10 +40,3 @@ class Podcast(models.Model):
         verbose_name = 'Подкаст'
         verbose_name_plural = 'Подкасты'
 
-'''class UserModel(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    bio = models.TextField('Биография')
-
-    def __str__(self):
-        return str(self.user)
-'''
