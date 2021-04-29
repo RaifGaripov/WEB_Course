@@ -6,12 +6,90 @@
 
 {% block javascript %}
 <script>
-     document.getElementById("listen_btn").style.display = "none";
+        $( document ).ready(function() {
+            // to count listened
+            document.getElementById("listen_btn").style.display = "none";
             var aud = document.getElementById("audio");
             aud.onplay = function() {
                 document.getElementById("listen_btn").click();}
 
-        </script>
+            //ajax form to show likes
+            $('.like-form').submit(function(e){
+                e.preventDefault()
+
+                const podcast_id = $(this).attr('id')
+
+                const likeText = $(`.like-btn${podcast_id}`).text()
+                const trim = $.trim(likeText)
+
+                const url = $(this).attr('action')
+
+                let res;
+                const likes = $(`.like-count${podcast_id}`).text()
+                const trimCount = parseInt(likes)
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'podcast_id':podcast_id,
+                    },
+                    success: function(response) {
+                        if(trim === 'Unlike') {
+                            $(`.like-btn${podcast_id}`).text('Like')
+                            res = trimCount - 1
+                        } else {
+                            $(`.like-btn${podcast_id}`).text('Unlike')
+                            res = trimCount + 1
+                        }
+
+                        $(`.like-count${podcast_id}`).text(res)
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                    }
+                })
+
+            })
+
+            $('.listen-form').submit(function(e){
+                e.preventDefault()
+
+                const podcast_id = $('.like-form').attr('id')
+
+                const listenText = $(`.listen-btn${podcast_id}`).text()
+                const trim = $.trim(listenText)
+
+                const url = $(this).attr('action')
+
+                let res;
+                const listened = $(`.listen-count${podcast_id}`).text()
+                const trimCount = parseInt(listened)
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'podcast_id':podcast_id,
+                    },
+                    success: function(response) {
+                        if(trim === 'Listened') {
+                            $(`.listen-btn${podcast_id}`).text('Unlistened')
+                            res = trimCount + 1
+                        }
+                        $(`.listen-count${podcast_id}`).text(res)
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                    }
+                })
+            })
+        });
+    </script>
+
+
 
 {% endblock %}
 
@@ -32,34 +110,13 @@
     {% endif %}
 
 
-<script>
-            var csrf = $("input[name=csrfmiddlewaretoken]").val();
-            $("#myForm").submit(function(e){
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: $(this).attr("action"),
-                    data: $(this).serialize(),
-                    success:function(){
-                        alert("smth happened");
-                        $("#counting").add("stmh");
-                    }
-                });
-               });
-    </script>
+
      {% if podcast.file %}
         <audio controls id="audio">
             <source src =" {{podcast.file.url}}" type="audio/mpeg">
         </audio>
 
 
-    <form id="myForm" action="{% url 'listen' podcast.pk %}"
-              method ="POST">
-            {% csrf_token %}
-        <button type="submit", name="podcast_id",
-                id="listen_btn",
-                value="{{ podcast.id }}", class="btn btn-primary btn-sm">Listen</button>
-    </form>
 
 
 
@@ -70,14 +127,50 @@
 
     <br/><br/>
 
-    <form action="{% url 'like' podcast.pk %}"
-          method ="POST">
-        {% csrf_token %}
-        <button type="submit", name="podcast_id",
-                value="{{ podcast.id }}", class="btn btn-primary btn-sm">Like</button>
-        <ul id="counting">
-        - Likes: {{podcast.likes.count}} <br>
-        - Listened: {{podcast.listened.count}}
-        </ul>
-    </form>
+
+    <div class="right floated">
+                        <form action="{% url 'like-podcast-view' %}" method="POST" class='like-form' id='{{podcast.id}}'>
+                            {% csrf_token %}
+                            <input type="hidden" name="podcast_id" value={{podcast.id}}>
+
+                                <button type="submit" class="ui button like-btn{{podcast.id}}">
+                                    {% if user not in podcast.likes.all %}
+                                        Like
+                                    {% else %}
+                                        Unlike
+                                    {% endif %}
+                                </button>
+                                <div class="ui grid">
+                                    <div class="column">
+                                        <div class="like-count{{podcast.id}}"> {{podcast.likes.count}} </div>
+                                    </div>
+                                    <div class="column">
+                                        likes
+                                    </div>
+                                </div>
+                        </form>
+    </div>
+
+    <div class="right floated">
+                        <form action="{% url 'listen-view' %}" method="POST" class='listen-form' id="second_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="podcast_id" value={{podcast.id}}>
+
+                                <button type="submit" class="ui button listen-btn{{podcast.id}}" id="listen_btn">
+                                    {% if user not in podcast.listened.all %}
+                                        Listened
+                                    {% else %}
+                                        Unlistened
+                                    {% endif %}
+                                </button>
+                                <div class="ui grid">
+                                    <div class="column">
+                                        <div class="listen-count{{podcast.id}}"> {{podcast.listened.count}} </div>
+                                    </div>
+                                    <div class="column">
+                                        listened
+                                    </div>
+                                </div>
+                        </form>
+    </div>
 {% endblock %}

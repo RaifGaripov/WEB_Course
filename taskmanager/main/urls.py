@@ -1,6 +1,8 @@
 from django.urls import path, include
 from django.contrib import admin
+from django.conf.urls import url
 from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,6 +13,8 @@ urlpatterns = [
     path('details/<int:pk>', views.detail_view.as_view(), name='details'),
     path('details/update/<int:pk>', views.update_view.as_view(), name='update'),
     path('details/<int:pk>/delete', views.delete_view.as_view(), name='delete'),
-    path('like/<int:pk>', views.like_view, name='like'),
-    path('listen/<int:pk>', views.listen_view, name='listen'),
+    # path('like/<int:pk>', views.like_view, name='like'),
+    # path('listen/<int:pk>', views.listen_view, name='listen'),
+    path('like/', views.like_unlike_podcast, name='like-podcast-view'),
+    path('listen/', views.listen_podcast, name='listen-view'),
 ]
