@@ -10,8 +10,12 @@
             // to count listened
             document.getElementById("listen_btn").style.display = "none";
             var aud = document.getElementById("audio");
+            aud[0].onended = function (){
+                this.load();
+            }
             aud.onplay = function() {
                 document.getElementById("listen_btn").click();}
+
 
             //ajax form to show likes
             $('.like-form').submit(function(e){
@@ -112,8 +116,8 @@
 
 
      {% if podcast.file %}
-        <audio controls id="audio">
-            <source src =" {{podcast.file.url}}" type="audio/mpeg">
+        <audio id="audio" controls="true">
+            <source src =" {{podcast.file.url}}">
         </audio>
 
 

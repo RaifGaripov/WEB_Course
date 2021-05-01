@@ -5,10 +5,7 @@ from .models import Podcast, Like, Listen
 from django.contrib.auth.models import User
 from .forms import PodcastForm
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, HttpResponse
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import authentication, permissions
+from .filters import PodcastFilter
 
 import json
 
@@ -38,7 +35,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'main/about.html')
+
+    podcasts = Podcast.objects.all()
+    myFilter = PodcastFilter(request.GET, queryset=podcasts)
+    context = {'myFilter': myFilter}
+    return render(request, 'main/about.html', context)
 
 def create(request):
     #save podcast

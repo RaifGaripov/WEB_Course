@@ -5,6 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Страница про нас</h1>
-    <p>Страница про нас</p>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+
+                <form method="get">
+                    {{myFilter.form}}
+
+                <button class="btn btn-primary" type="submit">Search</button>
+              </form>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
 {% endblock %}
