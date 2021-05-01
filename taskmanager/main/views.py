@@ -36,9 +36,10 @@ def index(request):
 
 def about(request):
 
-    podcasts = Podcast.objects.all()
+    podcasts = Podcast.objects.all().order_by('-id')
     myFilter = PodcastFilter(request.GET, queryset=podcasts)
-    context = {'myFilter': myFilter}
+    podcasts = myFilter.qs
+    context = {'myFilter': myFilter, 'podcasts': podcasts}
     return render(request, 'main/about.html', context)
 
 def create(request):

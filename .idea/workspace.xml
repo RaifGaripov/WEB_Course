@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c571830a-5819-484a-b1e3-38df639be6d6" name="Default Changelist" comment="Created site for podcasts&#10;Added main, side, and create urls">
-      <change afterPath="$PROJECT_DIR$/taskmanager/main/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/taskmanager/media/media/audio/Серега_-_Чёрный_бумер.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taskmanager/main/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/templates/main/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/templates/main/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taskmanager/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/taskmanager/taskmanager/settings.py" afterDir="false" />
     </list>
@@ -154,7 +151,8 @@
       <workItem from="1619527979551" duration="7005000" />
       <workItem from="1619637469530" duration="128000" />
       <workItem from="1619700229238" duration="7597000" />
-      <workItem from="1619722394418" duration="3201000" />
+      <workItem from="1619722394418" duration="3542000" />
+      <workItem from="1619852184586" duration="1603000" />
     </task>
     <task id="LOCAL-00001" summary="Created site for podcasts&#10;Added main, side, and create urls">
       <created>1616876563114</created>

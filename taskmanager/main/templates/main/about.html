@@ -21,4 +21,30 @@
 
     </div>
     <br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Название</th>
+					<th>Автор</th>
+					<th>Категория</th>
+					<th>Дата загрузки</th>
+					<th>Длительность</th>
+				</tr>
+
+				{% for podcast in podcasts %}
+
+				<tr>
+					<td>{{podcast.title}}</td>
+					<td>{{podcast.author}}</td>
+					<td>{{podcast.category}}</td>
+					<td>{{podcast.post_date}}</td>
+					<td>{{podcast.duration}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
 {% endblock %}
