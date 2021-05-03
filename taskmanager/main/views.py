@@ -1,13 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, RedirectView
-from django.urls import reverse, reverse_lazy
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.urls import  reverse_lazy
 from .models import Podcast, Like, Listen
-from django.contrib.auth.models import User
-from .forms import PodcastForm
+from .forms import PodcastForm, CategoryForm
 from django.contrib.auth.decorators import login_required
 from .filters import PodcastFilter
 
-import json
+
 
 class home_view(ListView):
     model = Podcast
@@ -29,14 +28,11 @@ class delete_view(DeleteView):
 
 def index(request):
     podcasts = Podcast.objects.all()
-    sorted_podcasts = Podcast.objects.order_by('-id')[:5] #last top 5
     return render(request, 'main/index.html',
                   {'title': 'Главная страница сайта', 'podcasts': podcasts})
 
-
-def about(request):
-
-    podcasts = Podcast.objects.all().order_by('-id')
+def search(request):
+    podcasts = Podcast.objects.all().order_by('-id')[:5]
     myFilter = PodcastFilter(request.GET, queryset=podcasts)
     podcasts = myFilter.qs
     context = {'myFilter': myFilter, 'podcasts': podcasts}
@@ -58,6 +54,21 @@ def create(request):
         "error": error
     }
     return render(request, 'main/create.html', context)
+
+def category(request):
+    error = ""
+    form = CategoryForm()
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        else:
+            error = form.errors
+    context = {
+        "form": form,
+        "error": error}
+    return render(request, 'main/category.html', context)
 
 @login_required
 def listen_podcast(request):

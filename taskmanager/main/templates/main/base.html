@@ -105,7 +105,7 @@
               {% if user.is_authenticated %}
               {% if user.is_superuser %}
                <li><a href="{% url 'create' %}" title="">Создать подкаст</a></li>
-<!--                  <a class="p-2 text-dark" href="{% url 'create' %}">Создать подкаст</a>-->
+               <li><a href="{% url 'category' %}" title="">Создать категорию</a></li>
 
               {% endif %}
               <li><a href="{% url 'logout' %}" title="">Выйти</a></li>
@@ -116,7 +116,7 @@
                <li><a href="{% url 'login' %}" title="">Войти</a></li>
 
           {% endif %}
-          <li><a href="{% url 'about' %}" title="">О нас</a></li>
+          <li><a href="{% url 'search' %}" title="">Поиск</a></li>
           </ul>
           <!-- Menu End -->
         </div>

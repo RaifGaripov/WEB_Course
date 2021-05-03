@@ -10,9 +10,6 @@
             // to count listened
             document.getElementById("listen_btn").style.display = "none";
             var aud = document.getElementById("audio");
-            aud[0].onended = function (){
-                this.load();
-            }
             aud.onplay = function() {
                 document.getElementById("listen_btn").click();}
 
@@ -48,7 +45,7 @@
                             res = trimCount + 1
                         }
 
-                        $(`.like-count${podcast_id}`).text(res)
+                        $(`.like-count${podcast_id}`).text(res + " Likes")
                     },
                     error: function(response) {
                         console.log('error', response)
@@ -83,7 +80,7 @@
                             $(`.listen-btn${podcast_id}`).text('Unlistened')
                             res = trimCount + 1
                         }
-                        $(`.listen-count${podcast_id}`).text(res)
+                        $(`.listen-count${podcast_id}`).text(res + " Listened")
                     },
                     error: function(response) {
                         console.log('error', response)
@@ -104,79 +101,64 @@
     <small>Автор: {{podcast.author}}</small><br/>
     <hr>
     <br/> {{podcast.descript}}
-
     <br/> {{podcast.category}}
     <br/> {{podcast.post_date}}
     <br/> {{podcast.duration}}
     <br/><br/>
+
     {% if podcast.image %}
         <br/> <img src="{{podcast.image.url}} ">
     {% endif %}
 
-
-
      {% if podcast.file %}
-        <audio id="audio" controls="true">
-            <source src =" {{podcast.file.url}}">
+        <audio controls id="audio" >
+            <source src ="{{podcast.file.url}}">
         </audio>
-
-
-
-
-
-
     {% endif %}
-
-
-
     <br/><br/>
 
-
     <div class="right floated">
-                        <form action="{% url 'like-podcast-view' %}" method="POST" class='like-form' id='{{podcast.id}}'>
-                            {% csrf_token %}
-                            <input type="hidden" name="podcast_id" value={{podcast.id}}>
+        <form action="{% url 'like-podcast-view' %}" method="POST" class='like-form' id='{{podcast.id}}'>
+            {% csrf_token %}
+            <input type="hidden" name="podcast_id" value={{podcast.id}}>
 
-                                <button type="submit" class="ui button like-btn{{podcast.id}}">
-                                    {% if user not in podcast.likes.all %}
-                                        Like
-                                    {% else %}
-                                        Unlike
-                                    {% endif %}
-                                </button>
-                                <div class="ui grid">
-                                    <div class="column">
-                                        <div class="like-count{{podcast.id}}"> {{podcast.likes.count}} </div>
-                                    </div>
-                                    <div class="column">
-                                        likes
-                                    </div>
-                                </div>
-                        </form>
+            {% if user.is_authenticated %}
+                <button type="submit" class="ui button like-btn{{podcast.id}}">
+                    {% if user not in podcast.likes.all %}
+                        Like
+                    {% else %}
+                        Unlike
+                    {% endif %}
+                </button>
+            {% endif %}
+                <div class="ui grid">
+                    <div class="column">
+                        <div class="like-count{{podcast.id}}"> {{podcast.likes.count}} Likes</div>
+                    </div>
+                </div>
+        </form>
     </div>
 
     <div class="right floated">
-                        <form action="{% url 'listen-view' %}" method="POST" class='listen-form' id="second_form">
-                            {% csrf_token %}
-                            <input type="hidden" name="podcast_id" value={{podcast.id}}>
+        <form action="{% url 'listen-view' %}" method="POST" class='listen-form' id="second_form">
+            {% csrf_token %}
+            <input type="hidden" name="podcast_id" value={{podcast.id}}>
 
-                                <button type="submit" class="ui button listen-btn{{podcast.id}}" id="listen_btn">
-                                    {% if user not in podcast.listened.all %}
-                                        Listened
-                                    {% else %}
-                                        Unlistened
-                                    {% endif %}
-                                </button>
-                                <div class="ui grid">
-                                    <div class="column">
-                                        <div class="listen-count{{podcast.id}}"> {{podcast.listened.count}} </div>
-                                    </div>
-                                    <div class="column">
-                                        listened
-                                    </div>
-                                </div>
-                        </form>
+            {% if user.is_authenticated %}
+                <button type="submit" class="ui button listen-btn{{podcast.id}}" id="listen_btn">
+                    {% if user not in podcast.listened.all %}
+                        Listened
+                    {% else %}
+                        Unlistened
+                    {% endif %}
+                </button>
+            {% endif %}
+                <div class="ui grid">
+                    <div class="column">
+                        <div class="listen-count{{podcast.id}}"> {{podcast.listened.count}} Listened</div>
+                    </div>
+                </div>
+        </form>
     </div>
-
 
 {% endblock %}

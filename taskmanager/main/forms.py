@@ -30,3 +30,13 @@ class PodcastForm(forms.ModelForm):
         file = forms.FileField(required=False)
         image = forms.ImageField(required=False)
 
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ["name"]
+        widgets = {
+            "name": forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Введите название'
+            })
+        }

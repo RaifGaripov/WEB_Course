@@ -21,14 +21,12 @@ class Podcast(models.Model):
     descript = models.TextField('Описание')
     author = models.TextField('Автор', max_length=50, default='Неизвестен')
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
-
     post_date = models.DateField(null=True, auto_now_add=True)
     file = models.FileField(null=True, blank=True, upload_to='media/audio/')
     duration = models.FloatField(default=0)
     image = models.ImageField(null=True, blank=True, upload_to='media/img/')
     listened = models.ManyToManyField(User, related_name='listened', default=None, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', default=None, blank=True)
-
 
     def __str__(self):
         return self.title + ' + ' + self.author
