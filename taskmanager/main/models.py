@@ -29,7 +29,7 @@ class Podcast(models.Model):
     likes = models.ManyToManyField(User, related_name='likes', default=None, blank=True)
 
     def __str__(self):
-        return self.title + ' + ' + self.author
+        return self.title
 
     def get_absolute_url(self):
         return reverse('home')

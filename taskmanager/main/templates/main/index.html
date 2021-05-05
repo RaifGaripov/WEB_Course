@@ -7,6 +7,20 @@
 {% block content %}
     <h1>Главная страница</h1>
 
+      <div class="flex-1">
+        <ul class="slides">
+          <li>
+            <img class ="slide active-slide" src="{% static 'img/flex/05.jpg' %}" alt="">
+          </li>
+          <li>
+            <img class ="slide" src="{% static 'img/flex/06.jpg' %}" alt="">
+          </li>
+          <li>
+            <img class ="slide" src="{% static 'img/flex/07.jpg' %}" alt="">
+          </li>
+        </ul>
+      </div>
+
     {% if podcasts %}
         {% for podcast in podcasts %}
             <div class="alert alert-warning mt-2">
@@ -22,4 +36,32 @@
     {% else %}
         <p>У нас нет подкастов!</p>
     {% endif %}
+
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h4>Самые классные подкасты</h4>
+            <ul class="list-a">
+              <li>
+                {% for like_podcast in like_podcasts %}
+                <i class="fa fa-check"></i> {{like_podcast}}
+                </li><li>
+                {% endfor %}
+            </ul>
+            <div class="space20"></div>
+          </div>
+
+          <div class="col-md-4">
+            <h4>Самые прослушиваемые подкасты</h4>
+            <ul class="list-a">
+              <li>
+                {% for listen_podcast in listen_podcasts %}
+                <i class="fa fa-check"></i> {{listen_podcast}}
+                </li><li>
+                {% endfor %}
+            </ul>
+            <div class="space20"></div>
+          </div>
+        </div>
+    </div>
 {% endblock %}

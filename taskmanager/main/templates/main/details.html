@@ -64,7 +64,7 @@
 
                 const url = $(this).attr('action')
 
-                let res;
+                let lis;
                 const listened = $(`.listen-count${podcast_id}`).text()
                 const trimCount = parseInt(listened)
 
@@ -78,9 +78,9 @@
                     success: function(response) {
                         if(trim === 'Listened') {
                             $(`.listen-btn${podcast_id}`).text('Unlistened')
-                            res = trimCount + 1
+                            lis = trimCount + 1
                         }
-                        $(`.listen-count${podcast_id}`).text(res + " Listened")
+                        $(`.listen-count${podcast_id}`).text(lis + " Listened")
                     },
                     error: function(response) {
                         console.log('error', response)
@@ -97,18 +97,16 @@
 {% block content %}
 
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-    <h1>{{podcast.title}}</h1>
-    <small>Автор: {{podcast.author}}</small><br/>
-    <hr>
-    <br/> {{podcast.descript}}
-    <br/> {{podcast.category}}
-    <br/> {{podcast.post_date}}
-    <br/> {{podcast.duration}}
-    <br/><br/>
 
-    {% if podcast.image %}
-        <br/> <img src="{{podcast.image.url}} ">
-    {% endif %}
+    <div class="space40"></div>
+
+    <h1>{{podcast.title}}</h1>
+
+    <h3>Автор: {{podcast.author}}</h3>
+
+    <hr>
+    <p>{{podcast.descript}}</p>
+    <hr>
 
      {% if podcast.file %}
         <audio controls id="audio" >
@@ -132,9 +130,8 @@
                 </button>
             {% endif %}
                 <div class="ui grid">
-                    <div class="column">
+                    <br>
                         <div class="like-count{{podcast.id}}"> {{podcast.likes.count}} Likes</div>
-                    </div>
                 </div>
         </form>
     </div>
@@ -154,11 +151,32 @@
                 </button>
             {% endif %}
                 <div class="ui grid">
-                    <div class="column">
                         <div class="listen-count{{podcast.id}}"> {{podcast.listened.count}} Listened</div>
-                    </div>
                 </div>
         </form>
     </div>
+
+    <br>
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseOne">
+                  Дополнительная информация
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+              <div class="panel-body">
+                {% if podcast.image %}
+                    <img src="{{podcast.image.url}}" alt="">
+                {% endif %}
+                  {{podcast.category}}
+                <br><br>
+                  {{podcast.post_date}}
+              </div>
+            </div>
+          </div>
+        </div>
 
 {% endblock %}

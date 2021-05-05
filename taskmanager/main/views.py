@@ -27,9 +27,12 @@ class delete_view(DeleteView):
     success_url = reverse_lazy('home')
 
 def index(request):
-    podcasts = Podcast.objects.all()
+    podcasts = Podcast.objects.all().order_by('-id')[:5]
+    like_podcasts = Podcast.objects.all().order_by('-likes')
+    listen_podcasts = Podcast.objects.all().order_by('-listened')
     return render(request, 'main/index.html',
-                  {'title': 'Главная страница сайта', 'podcasts': podcasts})
+                  {'title': 'Главная страница сайта', 'podcasts': podcasts,
+                   'like_podcasts': like_podcasts, 'listen_podcasts': listen_podcasts})
 
 def search(request):
     podcasts = Podcast.objects.all().order_by('-id')[:5]

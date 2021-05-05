@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Страница про нас
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+
+                <form method="get">
+                    {{myFilter.form}}
+
+                <button class="btn btn-primary" type="submit">Search</button>
+              </form>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Название</th>
+					<th>Автор</th>
+					<th>Категория</th>
+					<th>Дата загрузки</th>
+					<th>Длительность</th>
+				</tr>
+				{% if podcasts %}
+					{% for podcast in podcasts %}
+						<tr>
+							<td> <a href="{% url 'details' podcast.pk %}">{{podcast.title}}</a></td>
+							<td>{{podcast.author}}</td>
+							<td>{{podcast.category}}</td>
+							<td>{{podcast.post_date}}</td>
+							<td>{{podcast.duration}}</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
