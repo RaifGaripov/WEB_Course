@@ -130,8 +130,13 @@ USE_TZ = True
 STATIC_ROOT = ""
 STATIC_URL = '/static/'
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../static/'),
+    os.path.join(BASE_DIR, 'main', 'static'),
 )
 
 MEDIA_URL = '/media/'

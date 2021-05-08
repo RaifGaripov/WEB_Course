@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'main/base.html' %}
+
+{% block title %}
+Информация о подкасте
+{% endblock %}
+
+{% block content %}
+
+    <h2>Категории</h2>
+    <ul>
+        {% if categories %}
+            {% for category in categories %}
+                <li><h4>
+                    {{ category.name }}
+                </h4></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+{% endblock %}

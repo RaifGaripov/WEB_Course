@@ -156,6 +156,16 @@
         </form>
     </div>
 
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <br>
+            <h2>
+                <a href="{% url 'update' podcast.pk %}">Изменить</a>
+                <a href="{% url 'delete' podcast.pk %}">Удалить</a>
+            </h2>
+        {% endif %}
+    {% endif %}
+
     <br>
         <div class="panel-group">
           <div class="panel panel-default">

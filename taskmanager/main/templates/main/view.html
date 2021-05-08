@@ -8,9 +8,11 @@
 
     <h2>Подкасты</h2>
     <ul>
-        {% for podcast in object_list %}
-            <li>{{ podcast.title }}</li>
-        {% endfor %}
+        {% if podcasts %}
+            {% for podcast in podcasts %}
+                <li><h4><a href="{% url 'details' podcast.pk %}">{{ podcast.title }}</a></h4></li>
+            {% endfor %}
+        {% endif %}
     </ul>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-Страница про нас
+Поиск
 {% endblock %}
 
 {% block content %}
@@ -29,7 +29,6 @@
 					<th>Название</th>
 					<th>Автор</th>
 					<th>Категория</th>
-					<th>Дата загрузки</th>
 					<th>Длительность</th>
 				</tr>
 				{% if podcasts %}
@@ -38,7 +37,6 @@
 							<td> <a href="{% url 'details' podcast.pk %}">{{podcast.title}}</a></td>
 							<td>{{podcast.author}}</td>
 							<td>{{podcast.category}}</td>
-							<td>{{podcast.post_date}}</td>
 							<td>{{podcast.duration}}</td>
 						</tr>
 					{% endfor %}

@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -12,8 +12,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 class Podcast(models.Model):
@@ -30,6 +28,9 @@ class Podcast(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_detail_url(self):
+        return reverse('/details/' + str(self.id))
 
     def get_absolute_url(self):
         return reverse('home')
@@ -54,6 +55,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user}-{self.podcast}-{self.value}"
+
 
 LISTEN_CHOICES = (
     ('Listened', 'Listened'),

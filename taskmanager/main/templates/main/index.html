@@ -6,25 +6,26 @@
 
 {% block content %}
     <h1>Главная страница</h1>
-
-      <div class="flex-1">
-        <ul class="slides">
-          <li>
-            <img class ="slide active-slide" src="{% static 'img/flex/05.jpg' %}" alt="">
-          </li>
-          <li>
-            <img class ="slide" src="{% static 'img/flex/06.jpg' %}" alt="">
-          </li>
-          <li>
-            <img class ="slide" src="{% static 'img/flex/07.jpg' %}" alt="">
-          </li>
-        </ul>
-      </div>
-
+        <div class="panel-body">
+          <div class="flex-1">
+            <ul class="slides">
+              <li>
+                <img src="static/img/flex/05.jpg" alt="">
+              </li>
+              <li>
+                <img src="static/img/flex/06.jpg" alt="">
+              </li>
+              <li>
+                <img src="static/img/flex/07.jpg" alt="">
+              </li>
+            </ul>
+          </div>
+        </div>
     {% if podcasts %}
+    <p><h4>Последние подкасты</h4></p>
         {% for podcast in podcasts %}
             <div class="alert alert-warning mt-2">
-                <h3><a href="{% url 'details' podcast.pk %} ">{{ podcast.title }} - {{ podcast.author }}</a></h3>
+                <h3><a href="{% url 'details' podcast.pk %}">{{ podcast.title }} - {{ podcast.author }}</a></h3>
                 <p>{{ podcast.descript }}</p>
                 <p>{{ podcast.post_date }}</p>
                 {% if user.is_superuser %}
@@ -34,7 +35,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <p>У нас нет подкастов!</p>
+        <p><h4>У нас нет подкастов!</h4></p>
     {% endif %}
 
     <div class="container">
@@ -44,7 +45,8 @@
             <ul class="list-a">
               <li>
                 {% for like_podcast in like_podcasts %}
-                <i class="fa fa-check"></i> {{like_podcast}}
+                <i class="fa fa-check"></i>
+                  <a href="{% url 'details' like_podcast.pk %}">{{like_podcast}}</a>
                 </li><li>
                 {% endfor %}
             </ul>
@@ -56,7 +58,8 @@
             <ul class="list-a">
               <li>
                 {% for listen_podcast in listen_podcasts %}
-                <i class="fa fa-check"></i> {{listen_podcast}}
+                <i class="fa fa-check"></i>
+                  <a href="{% url 'details' listen_podcast.pk %}">{{listen_podcast}}</a>
                 </li><li>
                 {% endfor %}
             </ul>
