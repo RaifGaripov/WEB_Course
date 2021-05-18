@@ -76,11 +76,7 @@
                         'podcast_id':podcast_id,
                     },
                     success: function(response) {
-                        if(trim === 'Listened') {
-                            $(`.listen-btn${podcast_id}`).text('Unlistened')
-                            lis = trimCount + 1
-                        }
-                        $(`.listen-count${podcast_id}`).text(lis + " Listened")
+                        $(`.listen-count${podcast_id}`).text(trimCount + " Listened")
                     },
                     error: function(response) {
                         console.log('error', response)
